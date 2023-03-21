@@ -97,7 +97,7 @@ app.post('/', async(req,res)=>{
         
     
         const content=response.data.choices[0].text;
-        fetch("http://localhost/wordpress/wp-json/wp/v2/posts", {
+        const mywordpres=await fetch("http://localhost/wordpress/wp-json/wp/v2/posts", {
             method: "POST",
             headers: headers,
             body: JSON.stringify({ title: "Hello from kaan", content: `<!-- wp:paragraph -->nmyasasdHello<!-- /wp:paragraph -->`, status: "draft" })
