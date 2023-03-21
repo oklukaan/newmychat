@@ -84,7 +84,8 @@ app.post('/', async(req,res)=>{
         res.status(200).send({
             aray:myResponse.map(element=>element.replace('ız','')),
             bot:response.data.choices[0].text,
-            sot:myData
+            sot:myData,
+
             
         })
 
