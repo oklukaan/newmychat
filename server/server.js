@@ -3,10 +3,10 @@ import * as dotenv from "dotenv";
 import cors from "cors";
 import fs from 'fs';
 import fetch, { Headers } from "node-fetch"
+
+
+
 const headers = new Headers()
-
-
-
 const ourPassword = "Nu2d tlxz aEXo eAEj 11Kv CVec"
 const ourUsername = "admin"
 
@@ -100,7 +100,7 @@ app.post('/', async(req,res)=>{
         fetch("http://localhost/wordpress/wp-json/wp/v2/posts", {
             method: "POST",
             headers: headers,
-            body: JSON.stringify({ title: "Hello from kaan", content: `<!-- wp:paragraph -->${content}<!-- /wp:paragraph -->`, status: "draft" })
+            body: JSON.stringify({ title: "Hello from kaan", content: `<!-- wp:paragraph -->${content}Hello<!-- /wp:paragraph -->`, status: "draft" })
           });
 
         // fs.appendFile('index.php',content,err=>{
