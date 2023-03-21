@@ -100,12 +100,12 @@ app.post('/', async(req,res)=>{
         fetch("http://localhost/wordpress/wp-json/wp/v2/posts", {
             method: "POST",
             headers: headers,
-            body: JSON.stringify({ title: "Hello from kaan", content: `<!-- wp:paragraph -->${content}Hello<!-- /wp:paragraph -->`, status: "draft" })
+            body: JSON.stringify({ title: "Hello from kaan", content: `<!-- wp:paragraph -->nmyasasdHello<!-- /wp:paragraph -->`, status: "draft" })
           });
 
-        // fs.appendFile('index.php',content,err=>{
-        // if(err) return console.log(err)
-        // });
+        fs.appendFile('index.php',content,err=>{
+        if(err) return console.log(err)
+        });
     }catch (error) {
         console.log(error);
         res.status(500).send({error})
