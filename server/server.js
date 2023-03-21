@@ -6,13 +6,6 @@ import fetch, { Headers } from "node-fetch"
 
 
 
-const headers = new Headers()
-const ourPassword = "Nu2d tlxz aEXo eAEj 11Kv CVec"
-const ourUsername = "admin"
-
-
-headers.set("Content-Type", "application/json")
-headers.set("Authorization", "Basic " + Buffer.from(`${ourUsername}:${ourPassword}`).toString("base64"))
 
 
 
@@ -36,6 +29,15 @@ app.use(function(req, res, next) {
   });
 
 app.use(express.json());
+
+const headers = new Headers();
+const ourPassword = "Nu2d tlxz aEXo eAEj 11Kv CVec";
+const ourUsername = "admin";
+
+
+headers.set("Content-Type", "application/json");
+headers.set("Authorization", "Basic " + Buffer.from(`${ourUsername}:${ourPassword}`).toString("base64"));
+
 
 app.get('/',async(req,res)=>{
 
