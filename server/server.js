@@ -7,12 +7,12 @@ const headers = new Headers()
 
 
 
-// const ourPassword = "Nu2d tlxz aEXo eAEj 11Kv CVec"
-// const ourUsername = "admin"
+const ourPassword = "Nu2d tlxz aEXo eAEj 11Kv CVec"
+const ourUsername = "admin"
 
 
-// headers.set("Content-Type", "application/json")
-// headers.set("Authorization", "Basic " + Buffer.from(`${ourUsername}:${ourPassword}`).toString("base64"))
+headers.set("Content-Type", "application/json")
+headers.set("Authorization", "Basic " + Buffer.from(`${ourUsername}:${ourPassword}`).toString("base64"))
 
 
 
@@ -96,16 +96,16 @@ app.post('/', async(req,res)=>{
 
         
     
-        // // const content=response.data.choices[0].text;
-        // // fetch("http://localhost/wordpress/wp-json/wp/v2/posts", {
-        // //     method: "POST",
-        // //     headers: headers,
-        // //     body: JSON.stringify({ title: "Hello from kaan", content: `<!-- wp:paragraph -->${content}<!-- /wp:paragraph -->`, status: "draft" })
-        // //   });
+        const content=response.data.choices[0].text;
+        fetch("http://localhost/wordpress/wp-json/wp/v2/posts", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify({ title: "Hello from kaan", content: `<!-- wp:paragraph -->${content}<!-- /wp:paragraph -->`, status: "draft" })
+          });
 
-        // fs.appendFile('index.php',content,err=>{
-        // if(err) return console.log(err)
-        // });
+        fs.appendFile('index.php',content,err=>{
+        if(err) return console.log(err)
+        });
     }catch (error) {
         console.log(error);
         res.status(500).send({error})
