@@ -38,7 +38,28 @@ function typeText(element, text) {
         }
     }, 20)
 }
+const mySpecial=document.getElementById("mySpecial");
+function mySpecialFunc(element){
+   
 
+    const btn=document.createElement('button');
+    btn.innerText='tıkla';
+    btn.classList="oyfunc";
+    mySpecial.append(btn);
+   
+    if(btn){
+        const oyfunc=document.querySelector('.oyfunc');
+        const app=document.getElementById("app");
+        oyfunc.addEventListener('click',()=>{
+            app.style.display='none';
+            mySpecial.innerHTML+=`<p>${element}</p>`;
+        })
+    }
+  
+    
+
+
+}
 // generate unique ID for each message div of bot
 // necessary for typing text effect for that specific reply
 // without unique ID, typing text will work on every element
@@ -109,9 +130,15 @@ const handleSubmit = async (e) => {
     if (response.ok) {
         const data = await response.json();
         const parsedData = data.bot.trim() // trims any trailing spaces/'\n' 
+      
+        typeText(messageDiv, parsedData)
+        data.aray.forEach(element => {
+            let trimelement=element.trim();
+            mySpecialFunc(trimelement)
+            console.log(trimelement)
+        });
         console.log(data);
 
-        typeText(messageDiv, parsedData)
     } else {
         const err = await response.text()
 
