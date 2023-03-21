@@ -4,35 +4,8 @@ import user from './assets/user.svg'
 
 
 
-
-
-
-
-
-
-
-
 const form = document.querySelector('form')
 const chatContainer = document.querySelector('#chat_container')
-const app = document.querySelector('#app');
-const header = document.querySelector('#header');
-
-
-// app.innerHTML+=`<div class="my">
-// <button class="ser">Çıkış</button></div>`;
-
-// const ser=document.querySelector('.ser')
-// console.log(ser)
-// ser.addEventListener('click',()=>{
-   
-    
-//         localStorage.removeItem('auth');
-//         localStorage.removeItem('name');
-//         location.reload();
-        
-// })
-
-
 
 
 
@@ -66,28 +39,6 @@ function typeText(element, text) {
     }, 20)
 }
 
-const mySpecial=document.getElementById("mySpecial");
-function mySpecialFunc(element){
-   
-
-    const btn=document.createElement('button');
-    btn.innerText='tıkla';
-    btn.classList="oyfunc";
-    mySpecial.append(btn);
-   
-    if(btn){
-        const oyfunc=document.querySelector('.oyfunc');
-        const app=document.getElementById("app");
-        oyfunc.addEventListener('click',()=>{
-            app.style.display='none';
-            mySpecial.innerHTML+=`<p>${element}</p>`;
-        })
-    }
-  
-    
-
-
-}
 // generate unique ID for each message div of bot
 // necessary for typing text effect for that specific reply
 // without unique ID, typing text will work on every element
@@ -141,7 +92,7 @@ const handleSubmit = async (e) => {
     // messageDiv.innerHTML = "..."
     loader(messageDiv)
 
-    const response = await fetch('https://server-w6wp.onrender.com/', {
+    const response = await fetch('https://newmychat.onrender.com/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -158,22 +109,15 @@ const handleSubmit = async (e) => {
     if (response.ok) {
         const data = await response.json();
         const parsedData = data.bot.trim() // trims any trailing spaces/'\n' 
-        typeText(messageDiv, parsedData)
-        
-        data.aray.forEach(element => {
-            let trimelement=element.trim();
-            mySpecialFunc(trimelement)
-            console.log(trimelement)
-        });
         console.log(data);
 
-
+        typeText(messageDiv, parsedData)
     } else {
         const err = await response.text()
 
         messageDiv.innerHTML = "Something went wrong"
         alert(err)
-    } 
+    }
 }
 
 form.addEventListener('submit', handleSubmit)
@@ -182,4 +126,5 @@ form.addEventListener('keyup', (e) => {
         handleSubmit(e)
     }
 })
+
 
