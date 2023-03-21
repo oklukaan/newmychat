@@ -85,6 +85,7 @@ app.post('/', async(req,res)=>{
             aray:myResponse.map(element=>element.replace('ız','')),
             bot:response.data.choices[0].text,
             sot:myData,
+            lof:'yes'
             
         })
 
