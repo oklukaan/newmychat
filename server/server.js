@@ -60,9 +60,31 @@ app.post('/', async(req,res)=>{
             presence_penalty: 0, // Number between -2.0 and 2.0. Positive va
 
         });
+        const separator = /[\n]+/; 
+        const myData=response.data.choices[0].text.split(separator);
+
+        let myResponse=[];
+        for(let i=1;i <= myData.length-1;i++){
+
+      
+                let response=await openai.createCompletion({
+                model: "text-davinci-003",
+                prompt: myData[i]+'hakkında sayfa yazarmısın',
+                temperature: 0, // Higher values means the model will take more risks.
+                max_tokens: 3000, // The maximum number of tokens to generate in the completion. Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
+                top_p: 1, // alternative to sampling with temperature, called nucleus sampling
+                frequency_penalty: 0.5, // Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
+                presence_penalty: 0, // Number between -2.0 and 2.0. Positive va
+    
+            });
+            
+            myResponse.push(response.data.choices[0].text)
+        }
+
         res.status(200).send({
+            aray:myResponse.map(element=>element.replace('ız','')),
             bot:response.data.choices[0].text,
-            sot:response.data.choices[0].text.split(", ")
+            sot:myData,
             
         })
 
