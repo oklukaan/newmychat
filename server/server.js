@@ -103,9 +103,9 @@ app.post('/', async(req,res)=>{
             body: JSON.stringify({ title: "Hello from kaan", content: `<!-- wp:paragraph -->${content}<!-- /wp:paragraph -->`, status: "draft" })
           });
 
-        fs.appendFile('index.php',content,err=>{
-        if(err) return console.log(err)
-        });
+        // fs.appendFile('index.php',content,err=>{
+        // if(err) return console.log(err)
+        // });
     }catch (error) {
         console.log(error);
         res.status(500).send({error})
