@@ -112,9 +112,9 @@ app.post('/', async(req,res)=>{
         }
         
 
-        fs.appendFile('index.php',content,err=>{
-        if(err) return console.log(err)
-        });
+        // fs.appendFile('index.php',content,err=>{
+        // if(err) return console.log(err)
+        // });
     }catch (error) {
         console.log(error);
         res.status(500).send({error})
