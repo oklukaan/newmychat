@@ -51,7 +51,7 @@ function mySpecialFunc(element){
         const oyfunc=document.querySelector('.oyfunc');
         const app=document.getElementById("app");
         oyfunc.addEventListener('click',()=>{
-            app.style.display='none';
+            app.classList.toggle('d-none');
             mySpecial.innerHTML+=`<p>${element}</p>`;
         })
     }
